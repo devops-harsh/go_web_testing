@@ -1,4 +1,4 @@
-FROM golang:1.21 as BaseImage 
+FROM golang:1.21 as baseimage
 
 WORKDIR /app
 
@@ -16,9 +16,9 @@ RUN go build -o main .
 
 FROM gcr.io/distroless/base
 
-COPY --from=BaseImage /app/main .
+COPY --from=baseimage /app/main .
 
-COPY --from=BaseImage /app/static /static 
+COPY --from=baseimage /app/static /static 
 
 EXPOSE 8080 
 
